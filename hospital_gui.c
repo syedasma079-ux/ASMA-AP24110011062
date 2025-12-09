@@ -6,7 +6,6 @@
 #include <vector>
 using namespace std;
 
-// Color Codes
 #define RED     "\033[31m"
 #define ORANGE  "\033[33m"
 #define YELLOW  "\033[93m"
@@ -24,7 +23,7 @@ struct Patient {
     time_t arrival;
 };
 
-// ---------------- Comparator ----------------
+
 struct Compare {
     bool operator()(Patient const &p1, Patient const &p2) {
         if(p1.severity == p2.severity)
@@ -36,14 +35,14 @@ struct Compare {
 priority_queue<Patient, vector<Patient>, Compare> pq;
 int tokenNo = 1000;
 
-// ---------------- Time Format ----------------
+
 string getTime(time_t t) {
     char buf[30];
     strftime(buf, sizeof(buf), "%H:%M:%S", localtime(&t));
     return string(buf);
 }
 
-// ---------------- Severity Text ----------------
+
 void setSeverity(Patient &p) {
     switch(p.severity) {
         case 1: 
@@ -72,7 +71,7 @@ void setSeverity(Patient &p) {
     }
 }
 
-// ---------------- Department ----------------
+
 string getDepartment(int choice) {
     switch(choice) {
         case 1: return "Cardiology";
@@ -87,7 +86,7 @@ string getDepartment(int choice) {
     }
 }
 
-// ---------------- Add Patient ----------------
+
 void addPatient() {
     Patient p;
     cout << "\nEnter Patient Name: ";
@@ -128,7 +127,7 @@ void addPatient() {
     cout << "Token Number: " << p.token << "\n";
 }
 
-// ---------------- Call Next ----------------
+
 void callNext() {
     if(pq.empty()) {
         cout << "\nNo patients in queue.\n";
@@ -149,7 +148,7 @@ void callNext() {
     cout << "==================================\n";
 }
 
-// ---------------- Display Queue ----------------
+
 void displayQueue() {
     if(pq.empty()) {
         cout << "\nNo patients waiting.\n";
@@ -184,7 +183,6 @@ void displayQueue() {
     cout << "--------------------------------------------------------------\n";
 }
 
-// ---------------- Main ----------------
 int main() {
     int choice;
     while(true) {
@@ -205,4 +203,5 @@ int main() {
             default: cout << "\nInvalid choice.\n";
         }
     }
+
 }
